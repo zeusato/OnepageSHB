@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHS OnePage Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- left Panel: Settings -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    <h1>SHS-SHB OnePage</h1>
+                </div>
+                <p class="subtitle">Điền thông tin nhân viên hỗ trợ để tạo OnePage</p>
+            </div>
+
+            <div class="form-container">
+                <div class="input-group">
+                    <label for="name">CV Tư vấn đầu tư</label>
+                    <input type="text" id="name" placeholder="Nguyễn Văn A" autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="saleCode">Mã nhân viên</label>
+                    <input type="text" id="saleCode" placeholder="EMP123456" autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="tel" id="phone" placeholder="0912 345 678" autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="nva@shs.com.vn" autocomplete="off">
+                </div>
+
+                <div class="box-position-controls">
+                    <h3>Tinh chỉnh tọa độ</h3>
+                    <div class="slider-group"><label>X Offset</label><input type="range" id="posX" min="20" max="60"
+                            value="36.8" step="0.1"></div>
+                    <div class="slider-group"><label>Y Offset</label><input type="range" id="posY" min="80" max="98"
+                            value="91.2" step="0.1"></div>
+                    <div class="slider-group"><label>Width</label><input type="range" id="width" min="30" max="80"
+                            value="58.5" step="0.1"></div>
+                    <div class="slider-group"><label>Height</label><input type="range" id="height" min="3" max="15"
+                            value="6" step="0.1"></div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="btnPreview" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    Xem trước lớn
+                </button>
+                <button id="btnExport" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Xuất PDF
+                </button>
+            </div>
+        </aside>
+
+        <!-- right Panel: Live Preview -->
+        <main class="preview-panel">
+            <div class="preview-wrapper">
+                <div class="preview-container" id="previewContainer">
+                    <img src="OnePage.png" alt="SHS OnePage" class="preview-image" id="baseImage">
+                    <div class="overlay-box" id="overlayBox">
+                        <div class="info-content">
+                            <div class="info-line name-line" style="margin-bottom: 0.3cqw;">
+                                <span class="label">CV Tư vấn đầu tư:</span>
+                                <span class="value" id="previewName"></span>
+                            </div>
+                            <div class="info-line code-line">
+                                <span class="label">Mã nhân viên:</span>
+                                <span class="value" id="previewCode"></span>
+                            </div>
+                            <div class="info-line phone-line" id="previewPhoneLine" style="display: none;">
+                                <span class="label">Số điện thoại:</span>
+                                <span class="value" id="previewPhone"></span>
+                            </div>
+                            <div class="info-line email-line" id="previewEmailLine" style="display: none;">
+                                <span class="label">Email:</span>
+                                <span class="value" id="previewEmail"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Fullscreen Preview Modal -->
+    <div class="modal" id="previewModal">
+        <div class="modal-toolbar">
+            <button class="btn-zoom" id="btnZoomOut">-</button>
+            <span class="zoom-level" id="zoomLevel">100%</span>
+            <button class="btn-zoom" id="btnZoomIn">+</button>
+        </div>
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
