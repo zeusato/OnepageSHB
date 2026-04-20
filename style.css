@@ -418,6 +418,12 @@ body {
     font-size: 15px;
 }
 
+/* Base adjustment for mobile browsers minimum font sizes */
+html, body {
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
     body, html {
@@ -453,6 +459,18 @@ body {
     
     .preview-wrapper {
         width: 100%;
+    }
+
+    .preview-container {
+        width: 100%;
+        height: auto !important; /* Force aspect-ratio to dictate height */
+        -webkit-text-size-adjust: none;
+    }
+
+    /* Prevent text wrapping which breaks height on smaller screens */
+    .info-line {
+        flex-wrap: nowrap;
+        white-space: nowrap;
     }
     
     .modal-toolbar {
