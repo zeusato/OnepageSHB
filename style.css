@@ -417,3 +417,47 @@ body {
     text-align: center;
     font-size: 15px;
 }
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    body, html {
+        height: auto !important;
+        min-height: 100vh;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    .app-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        width: 100%;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 16px;
+    }
+    
+    .form-container {
+        overflow-y: visible;
+    }
+    
+    .preview-panel {
+        padding: 16px;
+        min-height: 500px;
+    }
+    
+    .preview-wrapper {
+        width: 100%;
+    }
+    
+    .modal-toolbar {
+        bottom: 16px;
+        padding: 8px 16px;
+        gap: 12px;
+    }
+}
